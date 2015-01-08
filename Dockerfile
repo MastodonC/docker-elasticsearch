@@ -1,6 +1,6 @@
 FROM mastodonc/basejava
 
-RUN curl -s https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.4.tar.gz | \
+RUN curl -sL https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.4.tar.gz | \
     tar -xzf - -C / --transform 's@\([a-z-]*\)-[0-9\.]*@\1@'
 
 ADD start-elasticsearch.sh /start-elasticsearch
