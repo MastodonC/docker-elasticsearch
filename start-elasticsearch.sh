@@ -5,6 +5,8 @@ mkdir -p "${LOG_DIR}"
 
 DIR_TAIL="elasticsearch"
 
+function join { local IFS="$1"; shift; echo "$*"; }
+
 if [ -z "${DATA_DIR_PATTERN}" ] ; then
     DATA_DIRS="/data/${DIR_TAIL}"
     mkdir -p ${DATA_DIRS}
