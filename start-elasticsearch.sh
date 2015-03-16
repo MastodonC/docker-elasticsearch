@@ -1,5 +1,7 @@
 #!/bin/bash
 
+CONFIG_FILE=/elasticsearch/config/elasticsearch.yml
+
 LOG_DIR="/logs/elasticsearch/${HOSTNAME}"
 mkdir -p "${LOG_DIR}"
 
@@ -24,11 +26,16 @@ fi
 
 echo "DATA_DIRS is ${DATA_DIRS}"
 
-sed -i \
-    -e "s@#path.plugins: .*@path.plugins: ${DATA_DIR}/plugins@" \
-    -e "s@#path.data: .*@path.data: ${DATA_DIRS}/data@" \
-    -e "s@#path.logs: .*@path.logs: ${LOG_DIR}/log@" \
-    -e "s@#path.work: .*@path.work: ${DATA_DIR}/work@" \
-    /elasticsearch/config/elasticsearch.yml
+
+cat <<EOF > ${CONFIG_FILE}
+path.plugins: ${DATA_DIR}/plugins
+path.data: ${DATA_DIRS}/data
+path.logs: ${LOG_DIR}/log
+path.work: ${DATA_DIR}/work
+
+# TODO - confirm security implications...
+http.cors.allow-origin: "/.*/"
+http.cors.enabled: true
+EOF
 
 /elasticsearch/bin/elasticsearch
