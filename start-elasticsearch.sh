@@ -2,6 +2,8 @@
 
 CONFIG_FILE=/elasticsearch/config/elasticsearch.yml
 
+CLUSTER_NAME=${ELASTICSEARCH_CLUSTER_NAME?NOT DEFINED}
+
 LOG_DIR="/logs/elasticsearch/${HOSTNAME}"
 mkdir -p "${LOG_DIR}"
 
@@ -24,10 +26,12 @@ else
     DATA_DIRS=$(join , ${ddirs[@]})
 fi
 
+echo "CLUSTER_NAME is ${CLUSTER_NAME}"
 echo "DATA_DIRS is ${DATA_DIRS}"
 
 
 cat <<EOF > ${CONFIG_FILE}
+cluster.name: ${CLUSTER_NAME}
 path.plugins: ${DATA_DIR}/plugins
 path.data: ${DATA_DIRS}/data
 path.logs: ${LOG_DIR}/log
