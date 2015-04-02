@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /etc/mastodonc/docker-functions
+
 CONFIG_FILE=/elasticsearch/config/elasticsearch.yml
 
 CLUSTER_NAME=${ELASTICSEARCH_CLUSTER_NAME?NOT DEFINED}
@@ -42,4 +44,6 @@ http.cors.allow-origin: "/.*/"
 http.cors.enabled: true
 EOF
 
-/elasticsearch/bin/elasticsearch
+ensure_rsyslogd_running &&
+    ensure_jstatd_running &&
+    /elasticsearch/bin/elasticsearch
