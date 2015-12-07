@@ -4,7 +4,7 @@ source /etc/mastodonc/docker-functions
 
 CONFIG_FILE=/elasticsearch/config/elasticsearch.yml
 
-CLUSTER_NAME=${ELASTICSEARCH_CLUSTER_NAME?NOT DEFINED}
+CLUSTER_NAME=${ELASTICSEARCH_CLUSTER_NAME:-kixi}
 
 LOG_DIR="/logs/elasticsearch/${HOSTNAME}"
 mkdir -p "${LOG_DIR}"
