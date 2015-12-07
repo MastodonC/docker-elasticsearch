@@ -44,6 +44,4 @@ http.cors.allow-origin: "/.*/"
 http.cors.enabled: true
 EOF
 
-ensure_rsyslogd_running &&
-    ensure_jstatd_running &&
-    /elasticsearch/bin/elasticsearch
+sudo -u elasticsearch /elasticsearch/bin/elasticsearch

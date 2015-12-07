@@ -7,9 +7,6 @@ RUN useradd -ms /bin/bash elasticsearch
 
 ADD start-elasticsearch.sh /start-elasticsearch
 
-ENV HOME /home/elasticsearch
-USER elasticsearch
-
 CMD ["/bin/bash","/start-elasticsearch"]
 
 # Expose ports.
