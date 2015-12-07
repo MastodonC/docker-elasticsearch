@@ -29,13 +29,12 @@ fi
 echo "CLUSTER_NAME is ${CLUSTER_NAME}"
 echo "DATA_DIRS is ${DATA_DIRS}"
 
-
 cat <<EOF > ${CONFIG_FILE}
 cluster.name: ${CLUSTER_NAME}
-path.plugins: ${DATA_DIR}/plugins
+path.plugins: ${DATA_DIRS}/plugins
 path.data: ${DATA_DIRS}/data
 path.logs: ${LOG_DIR}/log
-path.work: ${DATA_DIR}/work
+path.work: ${DATA_DIRS}/work
 
 # TODO - confirm security implications...
 http.cors.allow-origin: "/.*/"
