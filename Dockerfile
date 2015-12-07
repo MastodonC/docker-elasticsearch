@@ -5,6 +5,8 @@ RUN curl -sL https://download.elasticsearch.org/elasticsearch/release/org/elasti
 
 RUN useradd -ms /bin/bash elasticsearch
 
+RUN chown -R elasticsearch:elasticsearch /elasticsearch
+
 ADD start-elasticsearch.sh /start-elasticsearch
 
 CMD ["/bin/bash","/start-elasticsearch"]
