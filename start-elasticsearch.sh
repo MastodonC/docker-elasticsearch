@@ -29,11 +29,19 @@ fi
 echo "CLUSTER_NAME is ${CLUSTER_NAME}"
 echo "DATA_DIRS is ${DATA_DIRS}"
 
+# FIXME: DATA_DIRS is really only allowed to be a single dir.
+
+mkdir -p ${DATA_DIRS}/{plugins,data,log,work}
+
+chown -R elasticsearch:elasticsearch ${DATA_DIRS}
+chown -R elasticsearch:elasticsearch ${LOG_DIR}
+
+
 cat <<EOF > ${CONFIG_FILE}
 cluster.name: ${CLUSTER_NAME}
 path.plugins: ${DATA_DIRS}/plugins
 path.data: ${DATA_DIRS}/data
-path.logs: ${LOG_DIR}/log
+path.logs: ${LOG_DIR}
 path.work: ${DATA_DIRS}/work
 
 # TODO - confirm security implications...
