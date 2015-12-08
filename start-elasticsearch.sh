@@ -38,7 +38,7 @@ chown -R elasticsearch:elasticsearch ${LOG_DIR}
 
 
 cat <<EOF > ${CONFIG_FILE}
-network.host: 0.0.0.0
+network.host: ${ES_PORT_9200_TCP_ADDR}
 cluster.name: ${CLUSTER_NAME}
 path.plugins: ${DATA_DIRS}/plugins
 path.data: ${DATA_DIRS}/data
